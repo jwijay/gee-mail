@@ -1,9 +1,19 @@
-/* TO DO:
-- ADD BG IMAGE.
+/*
+TO DO:
 - Add Quail Mail mascot.
 - Change .message font-family?
-- Change some colors around. Make it more Quail-friendly.
 */
+
+.center-pills {
+  display: inline-block;
+}
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+  color: #222;
+  background-color: rgba(206,220,206,.9);
+}
 
 p {
   margin: 0;
@@ -27,7 +37,7 @@ p {
 }
 
 .current .item {
-  background: rgba(206,220,206,.9);
+  background: rgba(206,220,206,.4);
 }
 
 .item {

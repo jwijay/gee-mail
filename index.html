@@ -101,18 +101,31 @@
 				return a.date - b.date;
 			});
 
+			var numMessages = window.geemails.length;
+
     		//populating messages :D!
-			for (var i = 0; i < window.geemails.length; i++) {
+			for (var i = 0; i < numMessages; i++) {
 				var preGeneratedMessage = window.geemails[i];
 				addMessageRow(messagesElement, preGeneratedMessage);
 			}
 
+			//update inbox count
+			var updateInboxCount = function(newCount) {
+				var countElement = document.getElementById('inboxCount');
+				countElement.innerHTML = newCount;
+			}
+
 			var newMail = function() {
 				var newMessage = getNewMessage();
+				window.geemails.unshift(newMessage);
 				addMessageRow(messagesElement, newMessage);
+
+				var newNumMessages = window.geemails.length;
+				updateInboxCount(newNumMessages);
 			};
 
-			var timer = setInterval(newMail, 3000);
+			updateInboxCount(numMessages);
+			var timer = setInterval(newMail, 10000);
 
         	//message click-to-display function
         	$('body').on('click', '.message', function() {
@@ -138,6 +151,13 @@
 				<h1>Quail Mail</h1>
 				<p class="lead">A mail client for quails.</p>
 			</div>
+
+			<div class="text-center">
+				<ul class="nav nav-pills center-pills">
+				  <li role="navigation" class="active"><a href="#">Inbox (<span id="inboxCount"></span>)</a></li>
+				</ul>
+			</div>
+
 			<div id="messages">
 			<!-- Sample hard-coded message for testing purposes.
 				<div class="message">
