@@ -83,19 +83,39 @@
 				return messageElement;
 			};
 
-    		//populating messages :D!
-			var messagesElement = document.getElementById('messages');
+			var addMessageRow = function(messageRows, newMessage) {
+				var newMessageRow = createMessageElement(newMessage);
 
-			for (var i = 0; i < window.geemails.length; i++) {
-				var newMessage = window.geemails[i];
-
-				var newMsgElement = createMessageElement(newMessage);
-
-				messagesElement.insertBefore(newMsgElement,messagesElement.firstChild);
+				//prepends child (new message row element) to parent
+				//(messages element)
+				messageRows.insertBefore(newMessageRow, messageRows.firstChild);
 			}
 
+			var messagesElement = document.getElementById('messages');
+
+			//OPTIONAL: sorting initial messages by date before 
+			//creating message elements
+			window.geemails.sort(function(a, b) {
+				//is the first message's date larger (more recent) 
+				//than the second message's date?
+				return a.date - b.date;
+			});
+
+    		//populating messages :D!
+			for (var i = 0; i < window.geemails.length; i++) {
+				var preGeneratedMessage = window.geemails[i];
+				addMessageRow(messagesElement, preGeneratedMessage);
+			}
+
+			var newMail = function() {
+				var newMessage = getNewMessage();
+				addMessageRow(messagesElement, newMessage);
+			};
+
+			var timer = setInterval(newMail, 3000);
+
         	//message click-to-display function
-    		$('.message').click(function() {
+        	$('body').on('click', '.message', function() {
     			if (this.classList.contains('current')) {
 			    	$('.message').removeClass('current');
 			    	$('.msg-body').hide();
@@ -107,7 +127,6 @@
 			    }
         	});
 		};
-
 		//Do I need this? I dunno.
 		$(document).ready(main);
       };
@@ -120,7 +139,7 @@
 				<p class="lead">A mail client for quails.</p>
 			</div>
 			<div id="messages">
-			<!-- Sample hard-coded message for testing purposes. -->
+			<!-- Sample hard-coded message for testing purposes.
 				<div class="message">
 					<div class="item row">
 						<div class="col-xs-3">
@@ -148,7 +167,7 @@
 						<div class="col-xs-3">&nbsp;</div>
 					</div>
 				</div>
-			<!-- End hard-coded message sample. -->
+			End hard-coded message sample. -->
 
 			</div>
 		</div>
