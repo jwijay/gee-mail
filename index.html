@@ -1,18 +1,95 @@
 <html>
 	<head>
 		<script src="js/mail-generator.js"></script>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet" media="screen">
     <script>
       window.onload = function(){
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
-        
+        //var main = function() {
+    		$('.message').click(function() {
+		    	//closes all other open message body/bodies when clicking on a message
+		    	//maybe want to remove so multiple message bodies can remain open
+		    	$('.message').removeClass('current');
+		    	$('.msg-body').hide()
+		    	//using toggleClass to select/deselect message
+		    	$(this).addClass('current');
+		    	//might want to change so it can also hide message 
+		    	//when you click it twice
+		        $(this).children('.msg-body').show();
+        	});
+		//};
+		//Do I need this? I dunno.
+		//$(document).ready(main);
       };
     </script>
 	</head>
 	<body>
 		<div class="container" id="main">
-			Build Me!
+			<div class="page-header">
+				<h1>Quail Mail</h1>
+				<p class="lead">A mail client for quails.</p>
+			</div>
+			<div class="messages">
+			<!-- Sample hard-coded message for testing purposes. -->
+				<div class="message">
+					<div class="item row">
+						<div class="col-xs-3">
+							<p class="sender">Mr. Picklesworth</p>
+						</div>
+						<div class="col-xs-6">
+							<p class="subject">Help I'm in a jar!</p>
+						</div>
+						<div class="col-xs-3">
+							<p class="msg-date">Dec 11</p>
+						</div>
+					</div>
+					<div class="msg-body row">
+						<div class="col-xs-3">&nbsp;</div>
+						<div class="col-xs-6">
+							<p>Dr. Sir/Madam,</p><br/>
+							<p>Please help. I'm in a jar.</p><br/>
+							<p>Best Regards,
+							<br/>
+							<i>Mr. Picklesworth</i>
+							</p>
+						</div>
+						<div class="col-xs-3">&nbsp;</div>
+					</div>
+				</div>
+			<!-- End hard-coded message sample. -->
+
+
+			<!-- Sample hard-coded message for testing purposes. -->
+				<div class="message">
+					<div class="item row">
+						<div class="col-xs-3">
+							<p class="sender">Mr. Picklesworth</p>
+						</div>
+						<div class="col-xs-6">
+							<p class="subject">Help I'm in a jar!</p>
+						</div>
+						<div class="col-xs-3">
+							<p class="msg-date">Dec 11</p>
+						</div>
+					</div>
+					<div class="msg-body row">
+						<div class="col-xs-3">&nbsp;</div>
+						<div class="col-xs-6">
+							<p>Dr. Sir/Madam,</p><br/>
+							<p>Please help. I'm in a jar.</p><br/>
+							<p>Best Regards,
+							<br/>
+							<i>Mr. Picklesworth</i>
+							</p>
+						</div>
+						<div class="col-xs-3">&nbsp;</div>
+					</div>
+				</div>
+			<!-- End hard-coded message sample. -->
+
+			</div>
 		</div>
 	</body>
 </html>
