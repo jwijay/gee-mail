@@ -9,11 +9,12 @@
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
         var main = function() {
-    		//populating messages :D!
-			var messagesElement = document.getElementById('messages');
-
-			for (var i = 0; i < window.geemails.length; i++) {
-				var message = window.geemails[i];
+			/*
+			createMessageElement takes in a newMessage Object with 
+			body, sender, date, and subject properties. Returns a 
+			<div> element with a class name of 'message'.
+			*/
+			var createMessageElement = function(message) {
 				var msgBody = message.body;
 				var sender = message.sender;
 				var date = message.date;
@@ -79,7 +80,18 @@
 				messageElement.appendChild(itemRow);
 				messageElement.appendChild(msgBodyRow);
 
-				messagesElement.insertBefore(messageElement,messagesElement.firstChild);
+				return messageElement;
+			};
+
+    		//populating messages :D!
+			var messagesElement = document.getElementById('messages');
+
+			for (var i = 0; i < window.geemails.length; i++) {
+				var newMessage = window.geemails[i];
+
+				var newMsgElement = createMessageElement(newMessage);
+
+				messagesElement.insertBefore(newMsgElement,messagesElement.firstChild);
 			}
 
         	//message click-to-display function
