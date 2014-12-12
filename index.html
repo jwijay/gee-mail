@@ -9,17 +9,93 @@
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
         var main = function() {
+    		//populating messages :D!
+			var messagesElement = document.getElementById('messages');
+
+			for (var i = 0; i < window.geemails.length; i++) {
+				var message = window.geemails[i];
+				var msgBody = message.body;
+				var sender = message.sender;
+				var date = message.date;
+				var subject = message.subject;
+
+				var messageElement = document.createElement('div');
+				messageElement.className = 'message';
+
+				//create the row of the message with sender, subject, date
+				var itemRow = document.createElement('div');
+				itemRow.className = 'item row';
+
+				var senderElement = document.createElement('p');
+				senderElement.className = 'sender';
+				senderElement.innerHTML = sender;
+				var senderColumn = document.createElement('div');
+				senderColumn.className = 'col-xs-3';
+				senderColumn.appendChild(senderElement);
+
+				//There has to be a better way to do this...
+				//And basically replace 'sender' with 'subject'
+				var subjectElement = document.createElement('p');
+				subjectElement.className = 'subject';
+				subjectElement.innerHTML = subject;
+				var subjectColumn = document.createElement('div');
+				subjectColumn.className = 'col-xs-6';
+				subjectColumn.appendChild(subjectElement);
+
+				var dateElement = document.createElement('p');
+				dateElement.className = 'msg-date';
+				dateElement.innerHTML = date;
+				var dateColumn = document.createElement('div');
+				dateColumn.className = 'col-xs-3';
+				dateColumn.appendChild(dateElement);
+
+				itemRow.appendChild(senderColumn);
+				itemRow.appendChild(subjectColumn);
+				itemRow.appendChild(dateColumn);
+
+				//create the body of message
+				var msgBodyRow = document.createElement('div');
+				msgBodyRow.className = 'msg-body row';
+
+				var leftSpacerColumn = document.createElement('div');
+				leftSpacerColumn.className = 'col-xs-3';
+				leftSpacerColumn.innerHTML = '&nbsp';
+
+				var msgBodyElement = document.createElement('p');
+				msgBodyElement.innerHTML = msgBody;
+				var msgBodyColumn = document.createElement('div');
+				msgBodyColumn.className = 'col-xs-6';
+				msgBodyColumn.appendChild(msgBodyElement);
+
+				//maybe change this to "sideSpacerColumn" code that gets reused
+				var rightSpacerColumn = document.createElement('div');
+				rightSpacerColumn.className = 'col-xs-3';
+				rightSpacerColumn.innerHTML = '&nbsp';
+				
+				msgBodyRow.appendChild(leftSpacerColumn);
+				msgBodyRow.appendChild(msgBodyColumn);
+				msgBodyRow.appendChild(rightSpacerColumn);
+
+				messageElement.appendChild(itemRow);
+				messageElement.appendChild(msgBodyRow);
+
+				messagesElement.insertBefore(messageElement,messagesElement.firstChild);
+			}
+
+        	//message click-to-display function
     		$('.message').click(function() {
-		    	//closes all other open message body/bodies when clicking on a message
-		    	//maybe want to remove so multiple message bodies can remain open
-		    	$('.msg-body').hide()
-		    	//using toggleClass to select/deselect message
-		    	$(this).addClass('current');
-		    	//might want to change so it can also hide message 
-		    	//when you click it twice
-		        $(this).children('.msg-body').show();
+    			if (this.classList.contains('current')) {
+			    	$('.message').removeClass('current');
+			    	$('.msg-body').hide();
+    			} else {
+			    	$('.message').removeClass('current');
+			    	$('.msg-body').hide();
+			    	$(this).addClass('current');
+			        $(this).children('.msg-body').show();
+			    }
         	});
-		}
+		};
+
 		//Do I need this? I dunno.
 		$(document).ready(main);
       };
@@ -27,11 +103,11 @@
 	</head>
 	<body>
 		<div class="container" id="main">
-			<div class="page-header">
+			<div id="page-header">
 				<h1>Quail Mail</h1>
 				<p class="lead">A mail client for quails.</p>
 			</div>
-			<div class="messages">
+			<div id="messages">
 			<!-- Sample hard-coded message for testing purposes. -->
 				<div class="message">
 					<div class="item row">
@@ -42,43 +118,16 @@
 							<p class="subject">Help I'm in a jar!</p>
 						</div>
 						<div class="col-xs-3">
-							<p class="msg-date">Dec 11</p>
+							<p class="msg-date">Thu Dec 11 2014 18:30:00 GMT-1000 (HST)</p>
 						</div>
 					</div>
 					<div class="msg-body row">
 						<div class="col-xs-3">&nbsp;</div>
 						<div class="col-xs-6">
-							<p>Dr. Sir/Madam,</p><br/>
-							<p>Please help. I'm in a jar.</p><br/>
-							<p>Best Regards,
+							<p>Dr. Sir/Madam,</p>
 							<br/>
-							<i>Mr. Picklesworth</i>
-							</p>
-						</div>
-						<div class="col-xs-3">&nbsp;</div>
-					</div>
-				</div>
-			<!-- End hard-coded message sample. -->
-
-
-			<!-- Sample hard-coded message for testing purposes. -->
-				<div class="message">
-					<div class="item row">
-						<div class="col-xs-3">
-							<p class="sender">Mr. Picklesworth</p>
-						</div>
-						<div class="col-xs-6">
-							<p class="subject">Help I'm in a jar!</p>
-						</div>
-						<div class="col-xs-3">
-							<p class="msg-date">Dec 11</p>
-						</div>
-					</div>
-					<div class="msg-body row">
-						<div class="col-xs-3">&nbsp;</div>
-						<div class="col-xs-6">
-							<p>Dr. Sir/Madam,</p><br/>
-							<p>Please help. I'm in a jar.</p><br/>
+							<p>Please help. I'm in a jar.</p>
+							<br/>
 							<p>Best Regards,
 							<br/>
 							<i>Mr. Picklesworth</i>
