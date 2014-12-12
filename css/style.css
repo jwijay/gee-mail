@@ -1,7 +1,8 @@
 /* TO DO:
-- ADD BG IMAGE
+- ADD BG IMAGE.
 - Add Quail Mail mascot.
-- Change message font-family?
+- Change .message font-family?
+- Change some colors around. Make it more Quail-friendly.
 */
 
 p {
@@ -12,7 +13,7 @@ p {
   margin: 0;
 }
 
-.messages {
+#messages {
   margin-top: 30px;
   margin-bottom: 30px;
 }
