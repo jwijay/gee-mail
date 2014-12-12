@@ -3,11 +3,12 @@
 		<script src="js/mail-generator.js"></script>
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet" media="screen">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script>
       window.onload = function(){
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
-        //var main = function() {
+        var main = function() {
     		$('.message').click(function() {
 		    	//closes all other open message body/bodies when clicking on a message
 		    	//maybe want to remove so multiple message bodies can remain open
@@ -19,9 +20,9 @@
 		    	//when you click it twice
 		        $(this).children('.msg-body').show();
         	});
-		//};
+		}
 		//Do I need this? I dunno.
-		//$(document).ready(main);
+		$(document).ready(main);
       };
     </script>
 	</head>
