@@ -1,7 +1,6 @@
 /*
 TO DO:
 - Add Quail Mail mascot.
-- Change .message font-family?
 */
 
 .center-pills {
@@ -13,6 +12,23 @@ TO DO:
 .nav-pills > li.active > a:focus {
   color: #222;
   background-color: rgba(206,220,206,.9);
+}
+
+h1 {
+  font-size: 54px;
+  font-family: 'Merriweather', serif;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.lead {
+  font-size: 17px;
+  line-height: 12px;
+  color: #777;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
 }
 
 p {
