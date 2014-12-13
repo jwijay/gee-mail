@@ -126,7 +126,7 @@
 			};
 
 			updateInboxCount(numMessages);
-			var timer = setInterval(newMail, 10000);
+			var timer = setInterval(newMail, 8000);
 
         	//message click-to-display function
         	$('body').on('click', '.message', function() {
@@ -139,6 +139,16 @@
 			    	$(this).addClass('current');
 			        $(this).children('.msg-body').show();
 			    }
+        	});
+
+        	$('body').on('click','#toggleTimer',function () {
+        		$('#toggleTimer').toggleClass('active');
+        		if (timer != null) {
+        			clearInterval(timer);
+        			timer = null;
+        		} else {
+        			timer = setInterval(newMail, 8000);
+        		}
         	});
 		};
 		//Do I need this? I dunno.
@@ -156,6 +166,7 @@
 			<div class="text-center">
 				<ul class="nav nav-pills center-pills">
 				  <li role="navigation" class="active"><a href="#">Inbox (<span id="inboxCount"></span>)</a></li>
+				  <li id="toggleTimer"><a href="#">Freeze Time</a></li>
 				</ul>
 			</div>
 

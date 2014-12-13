@@ -1,17 +1,35 @@
-/*
-TO DO:
-- Add Quail Mail mascot.
-*/
+#page-header {
+  background-image: url('../quail.jpg');
+  background-size: 100px;
+  background-repeat: no-repeat;
+  position: static;
+  padding-left: 108px;
+}
 
 .center-pills {
   display: inline-block;
 }
 
 .nav-pills > li.active > a,
-.nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
   color: #222;
   background-color: rgba(206,220,206,.9);
+}
+
+.nav-pills > li.active > a:hover {
+  color: #222;
+  background-color: rgba(206,220,206,.5);
+}
+
+.nav-pills > li > a,
+.nav-pills > li > a:focus {
+  color: #222;
+  background-color: rgba(220,220,220,.4);
+}
+
+.nav-pills > li > a:hover {
+  color: #222;
+  background-color: rgba(206,220,206,.5);
 }
 
 h1 {
@@ -19,12 +37,13 @@ h1 {
   font-family: 'Merriweather', serif;
   font-weight: bold;
   font-style: italic;
+  padding-top: 10px;
 }
 
 .lead {
   font-size: 17px;
-  line-height: 12px;
   color: #777;
+  margin-top: -10px;
 }
 
 body {
